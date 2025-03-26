@@ -13,37 +13,60 @@ const JWT_SECRET = process.env.JWT_SECRET || 'tasman-visual-editor-secret';
 
 // Database connection
 const getDb = async () => {
-  // In Netlify Functions, we need to use the /tmp directory for writable files
-  const dbPath = process.env.NETLIFY 
-    ? path.join('/tmp', 'visual-editor.db') 
-    : path.join(__dirname, '..', '..', 'visual-editor', 'database', 'visual-editor.db');
+  // Check if we're in the Netlify environment
+  const isNetlify = process.env.NETLIFY === 'true';
+  console.log('Environment:', isNetlify ? 'Netlify' : 'Local');
   
-  // Check if we're in Netlify and need to copy the DB file
-  if (process.env.NETLIFY) {
-    const sourceDbPath = path.join(__dirname, '..', '..', 'visual-editor', 'database', 'visual-editor.db');
+  // Define the database path
+  let dbPath;
+  
+  if (isNetlify) {
+    // Use /tmp directory for Netlify (writable)
+    dbPath = path.join('/tmp', 'visual-editor.db');
+    console.log('Using Netlify database path:', dbPath);
     
-    // Only copy if the destination doesn't exist
-    if (fs.existsSync(sourceDbPath) && !fs.existsSync(dbPath)) {
+    // Create the directory if it doesn't exist
+    const tmpDir = path.dirname(dbPath);
+    if (!fs.existsSync(tmpDir)) {
+      console.log('Creating directory:', tmpDir);
+      fs.mkdirSync(tmpDir, { recursive: true });
+    }
+    
+    // Check if the database file exists in /tmp
+    if (!fs.existsSync(dbPath)) {
+      console.log('Database file does not exist in /tmp, will be created');
+    } else {
+      console.log('Database file exists in /tmp:', dbPath);
+      // Check file permissions
       try {
-        // Create the directory if it doesn't exist
-        const tmpDir = path.dirname(dbPath);
-        if (!fs.existsSync(tmpDir)) {
-          fs.mkdirSync(tmpDir, { recursive: true });
-        }
-        
-        // Copy the database file
-        fs.copyFileSync(sourceDbPath, dbPath);
-        console.log('Database file copied to /tmp directory');
-      } catch (err) {
-        console.error('Error copying database file:', err);
+        const stats = fs.statSync(dbPath);
+        console.log('File permissions:', stats.mode.toString(8));
+        // Ensure the file is writable
+        fs.accessSync(dbPath, fs.constants.W_OK);
+        console.log('File is writable');
+      } catch (error) {
+        console.error('File permission error:', error);
       }
     }
+  } else {
+    // Use local path for development
+    dbPath = path.join(__dirname, '..', '..', 'data', 'visual-editor.db');
+    console.log('Using local database path:', dbPath);
   }
-
-  return open({
-    filename: dbPath,
-    driver: Database
-  });
+  
+  try {
+    console.log('Opening database connection...');
+    // Open the database connection
+    const db = await open({
+      filename: dbPath,
+      driver: Database
+    });
+    console.log('Database connection opened successfully');
+    return db;
+  } catch (error) {
+    console.error('Error opening database:', error);
+    throw error;
+  }
 };
 
 // Helper to validate JWT token
@@ -68,8 +91,16 @@ const headers = {
 };
 
 export const handler: Handler = async (event) => {
+  console.log('Visual Editor function invoked');
+  
   // Initialize the database if needed
-  await initDatabase();
+  try {
+    console.log('Initializing database...');
+    await initDatabase();
+    console.log('Database initialization completed');
+  } catch (initError) {
+    console.error('Database initialization error:', initError);
+  }
 
   // Handle preflight requests
   if (event.httpMethod === 'OPTIONS') {
