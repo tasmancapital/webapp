@@ -17,7 +17,9 @@ const transporter = nodemailer.createTransport({
   },
   pool: true, // Use connection pool
   maxConnections: 5,
-  maxMessages: 100
+  maxMessages: 100,
+  debug: process.env.NODE_ENV === 'development', // Enable debug in development
+  logger: process.env.NODE_ENV === 'development' // Enable logger in development
 });
 
 export const handler: Handler = async (event) => {
@@ -52,14 +54,20 @@ export const handler: Handler = async (event) => {
       };
     }
 
+    console.log('Attempting to send email with credentials:', {
+      from: process.env.VITE_EMAIL_USER,
+      to: 'enquiries@tasmancapital.com.au'
+    });
+
     // Verify connection before sending
     await transporter.verify();
+    console.log('SMTP connection verified successfully');
 
     // Send email with proper Office 365 formatting
     const info = await transporter.sendMail({
       from: {
         name: 'Tasman Capital Website',
-        address: 'noreply@tasmancapital.com.au'
+        address: process.env.VITE_EMAIL_USER || 'noreply@tasmancapital.com.au'
       },
       to: 'enquiries@tasmancapital.com.au',
       replyTo: email,
@@ -73,12 +81,17 @@ export const handler: Handler = async (event) => {
             <p><strong>Message:</strong></p>
             <p style="white-space: pre-wrap;">${message}</p>
           </div>
+          <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; font-size: 12px; color: #666;">
+            <p>This email was sent from the Tasman Capital website contact form.</p>
+          </div>
         </div>
       `,
       text: `
 Name: ${name}
 Email: ${email}
 Message: ${message}
+
+This email was sent from the Tasman Capital website contact form.
       `.trim(),
       priority: 'high',
       headers: {
@@ -87,6 +100,8 @@ Message: ${message}
         'Importance': 'high'
       }
     });
+
+    console.log('Email sent successfully:', info.messageId);
 
     return {
       statusCode: 200,
@@ -99,13 +114,18 @@ Message: ${message}
 
   } catch (error) {
     console.error('Email error:', error);
-
+    
+    // Provide more detailed error information
+    const errorMessage = error instanceof Error 
+      ? error.message 
+      : 'Unknown error occurred';
+      
     return {
       statusCode: 500,
       headers,
       body: JSON.stringify({
-        error: 'Failed to send email',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        success: false,
+        error: errorMessage
       })
     };
   }
