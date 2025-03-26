@@ -6,14 +6,42 @@ import { open } from 'sqlite';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
+import { initDatabase } from './initDatabase';
 
 // Secret for JWT signing - in production, use environment variables
 const JWT_SECRET = process.env.JWT_SECRET || 'tasman-visual-editor-secret';
 
 // Database connection
 const getDb = async () => {
+  // In Netlify Functions, we need to use the /tmp directory for writable files
+  const dbPath = process.env.NETLIFY 
+    ? path.join('/tmp', 'visual-editor.db') 
+    : path.join(__dirname, '..', '..', 'visual-editor', 'database', 'visual-editor.db');
+  
+  // Check if we're in Netlify and need to copy the DB file
+  if (process.env.NETLIFY) {
+    const sourceDbPath = path.join(__dirname, '..', '..', 'visual-editor', 'database', 'visual-editor.db');
+    
+    // Only copy if the destination doesn't exist
+    if (fs.existsSync(sourceDbPath) && !fs.existsSync(dbPath)) {
+      try {
+        // Create the directory if it doesn't exist
+        const tmpDir = path.dirname(dbPath);
+        if (!fs.existsSync(tmpDir)) {
+          fs.mkdirSync(tmpDir, { recursive: true });
+        }
+        
+        // Copy the database file
+        fs.copyFileSync(sourceDbPath, dbPath);
+        console.log('Database file copied to /tmp directory');
+      } catch (err) {
+        console.error('Error copying database file:', err);
+      }
+    }
+  }
+
   return open({
-    filename: path.join(__dirname, '..', '..', 'visual-editor', 'database', 'visual-editor.db'),
+    filename: dbPath,
     driver: Database
   });
 };
@@ -40,6 +68,9 @@ const headers = {
 };
 
 export const handler: Handler = async (event) => {
+  // Initialize the database if needed
+  await initDatabase();
+
   // Handle preflight requests
   if (event.httpMethod === 'OPTIONS') {
     return {
