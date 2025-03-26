@@ -1,0 +1,21 @@
+{
+  "name": "Standard Page",
+  "sections": [
+    {
+      "name": "Header",
+      "fixed": true
+    },
+    {
+      "name": "Hero",
+      "optional": true
+    },
+    {
+      "name": "Content",
+      "required": true
+    },
+    {
+      "name": "Footer",
+      "fixed": true
+    }
+  ]
+}
