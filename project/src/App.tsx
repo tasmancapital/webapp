@@ -14,7 +14,6 @@ import TermsOfUse from './pages/TermsOfUse';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Contact from './pages/Contact';
 import TestPage from './pages/TestPage';
-import NetlifyVisualEditing from './components/NetlifyVisualEditing';
 
 function App() {
   const location = useLocation();
@@ -49,8 +48,6 @@ function App() {
         <Route path="/test" element={<TestPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      {/* Add NetlifyVisualEditing component for visual editing capabilities */}
-      <NetlifyVisualEditing />
     </>
   );
 }

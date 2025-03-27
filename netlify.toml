@@ -21,6 +21,11 @@
   status = 200
   force = true
 
+# Enable Netlify's Visual Editor
+[build.environment]
+  NETLIFY_VISUAL_EDITING = "true"
+  NODE_VERSION = "16"
+
 [[headers]]
   for = "/*"
     [headers.values]
@@ -31,6 +36,13 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+# Headers to allow Netlify's Visual Editor
+[[headers]]
+  for = "/*"
+    [headers.values]
+    Access-Control-Allow-Origin = "*"
+    X-Frame-Options = "SAMEORIGIN"
 
 [[headers]]
   for = "/assets/*"
