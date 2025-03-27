@@ -25,6 +25,8 @@
 [build.environment]
   NETLIFY_VISUAL_EDITING = "true"
   NODE_VERSION = "16"
+  # Add polyfills for crypto
+  NODE_OPTIONS = "--openssl-legacy-provider"
 
 [[headers]]
   for = "/*"
