@@ -1,0 +1,39 @@
+{
+  "type": "AboutPage",
+  "title": "Who we are",
+  "description": "A leading private investment firm focused on partnering with exceptional management teams to build great businesses across Australia and New Zealand.\n\nLike Abel Tasman, Tasman Capital is at the forefront of identifying and capitalising on new opportunities on both sides of the Tasman Sea; in Australia and New Zealand.",
+  "heroImage": "https://thinkenergy.au/tasman/tasman_captal_about.JPG",
+  "history": {
+    "title": "Our History",
+    "description": "From our founding in 1999 to present day, explore the key milestones that have shaped Tasman Capital's journey in private investment."
+  },
+  "values": [
+    {
+      "title": "Strategic Partnership",
+      "description": "We forge deep, collaborative relationships with management teams, providing not just capital, but strategic guidance, operational expertise, and access to our extensive network across the region.",
+      "points": [
+        "Management team collaboration",
+        "Strategic guidance and expertise",
+        "Regional network access"
+      ]
+    },
+    {
+      "title": "Value Creation",
+      "description": "Our approach combines disciplined investment strategy with hands-on operational improvement.",
+      "points": [
+        "Defensive: Non-discretionary businesses resilient through economic cycles",
+        "Operational: Improving underperforming businesses through cost and revenue initiatives",
+        "Roll-ups: Consolidating sectors to create market leaders through strategic acquisitions"
+      ]
+    },
+    {
+      "title": "Long-term Vision",
+      "description": "We take a patient, long-term approach to building sustainable businesses. Our track record of successful exits and strong returns is built on our ability to identify and execute transformative growth strategies.",
+      "points": [
+        "Sustainable business growth",
+        "Proven track record of exits",
+        "Transformative strategies"
+      ]
+    }
+  ]
+}

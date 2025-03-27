@@ -7,6 +7,11 @@
 [functions]
   node_bundler = "esbuild"
 
+# Environment variables
+[build.environment]
+  NODE_VERSION = "16"
+  NETLIFY_VISUAL_EDITING = "true"
+
 # Force HTTPS
 [[redirects]]
   from = "http://*"
@@ -21,16 +26,10 @@
   status = 200
   force = true
 
-# Enable Netlify's Visual Editor
-[build.environment]
-  NETLIFY_VISUAL_EDITING = "true"
-  NODE_VERSION = "16"
-
 [[headers]]
   for = "/*"
     [headers.values]
     Cache-Control = "public, max-age=0, s-maxage=31536000, must-revalidate"
-    X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"

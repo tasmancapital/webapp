@@ -1,0 +1,15 @@
+{
+  "type": "ContactPage",
+  "title": "Contact Us",
+  "description": "Please contact our team",
+  "heroImage": "https://thinkenergy.au/tasman/tasman_capital_contact.JPG",
+  "address": {
+    "street": "Level 2, 50 Clarence Street",
+    "city": "Sydney",
+    "state": "NSW",
+    "postcode": "2000",
+    "country": "Australia"
+  },
+  "email": "info@tasmancapital.com.au",
+  "phone": "+61 2 8599 9500"
+}

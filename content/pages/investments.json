@@ -1,0 +1,51 @@
+{
+  "type": "InvestmentsPage",
+  "title": "Our Investments",
+  "investments": [
+    {
+      "name": "Axicorp",
+      "id": "axicorp",
+      "logo": "https://thinkenergy.au/tasman/pastdeals/Axicorp.webp",
+      "type": "Realised Investment",
+      "url": "https://www.axi.com/au",
+      "description": "A leading global foreign exchange trading platform",
+      "sector": "Financial Services",
+      "investment": "2016",
+      "exit": "2022"
+    },
+    {
+      "name": "Bledisloe",
+      "id": "bledisloe",
+      "logo": "https://thinkenergy.au/tasman/pastdeals/BL+LOGO.png",
+      "type": "Realised Investment",
+      "url": "https://www.invocare.com.au/",
+      "description": "The second largest funeral services provider in Australia and New Zealand.",
+      "sector": "Healthcare",
+      "investment": "2005",
+      "exit": "2010"
+    },
+    {
+      "name": "FleetPartners",
+      "id": "fleetpartners",
+      "logo": "https://thinkenergy.au/tasman/pastdeals/FP.png",
+      "type": "Realised Investment",
+      "url": "https://www.fleetpartners.com.au",
+      "description": "Vehicle fleet management and leasing services",
+      "sector": "Fleet Leasing",
+      "investment": "2008",
+      "exit": "2015"
+    },
+    {
+      "name": "Healthcare Australia",
+      "id": "healthcare-australia",
+      "logo": "https://thinkenergy.au/tasman/pastdeals/HCA.png",
+      "type": "Realised Investment",
+      "url": "https://www.healthcareaustralia.com.au",
+      "description": "Australia's largest homecare and nursing agency",
+      "sector": "Healthcare",
+      "investment": "2004",
+      "exit": "2005"
+    }
+  ],
+  "heroImage": "https://thinkenergy.au/tasman/sydney_tasman_capital_header.jpeg"
+}

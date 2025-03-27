@@ -7,7 +7,7 @@ module.exports = {
   stackbitVersion: '~2.1.14',
   contentSources: [
     {
-      name: 'git',
+      name: 'content',
       driver: {
         type: 'git',
         repo: {
@@ -23,11 +23,11 @@ module.exports = {
           name: "HomePage",
           type: "page",
           urlPath: "/",
-          filePath: "content/pages/index.json",
+          filePath: "content/pages/home.json",
           fields: [
             { name: "title", type: "string", required: true },
-            { name: "heroTitle", type: "string" },
-            { name: "heroSubtitle", type: "string" },
+            { name: "subtitle", type: "string" },
+            { name: "heroVideo", type: "string" },
             { name: "sections", type: "list", items: { type: "reference", models: ["HeroSection", "ProvenTrackRecordSection", "PastInvestmentsSection", "PerformanceSection", "LogoShowcaseSection"] } }
           ]
         },
@@ -38,7 +38,17 @@ module.exports = {
           filePath: "content/pages/about.json",
           fields: [
             { name: "title", type: "string", required: true },
-            { name: "content", type: "markdown" }
+            { name: "description", type: "markdown" },
+            { name: "heroImage", type: "string" },
+            { name: "history", type: "object", fields: [
+              { name: "title", type: "string" },
+              { name: "description", type: "string" }
+            ]},
+            { name: "values", type: "list", items: { type: "object", fields: [
+              { name: "title", type: "string" },
+              { name: "description", type: "string" },
+              { name: "points", type: "list", items: { type: "string" } }
+            ]}}
           ]
         },
         {
@@ -48,7 +58,18 @@ module.exports = {
           filePath: "content/pages/investments.json",
           fields: [
             { name: "title", type: "string", required: true },
-            { name: "content", type: "markdown" }
+            { name: "heroImage", type: "string" },
+            { name: "investments", type: "list", items: { type: "object", fields: [
+              { name: "name", type: "string" },
+              { name: "id", type: "string" },
+              { name: "logo", type: "string" },
+              { name: "type", type: "string" },
+              { name: "url", type: "string" },
+              { name: "description", type: "string" },
+              { name: "sector", type: "string" },
+              { name: "investment", type: "string" },
+              { name: "exit", type: "string" }
+            ]}}
           ]
         },
         {
@@ -58,11 +79,15 @@ module.exports = {
           filePath: "content/pages/team.json",
           fields: [
             { name: "title", type: "string", required: true },
+            { name: "description", type: "string" },
+            { name: "heroVideo", type: "string" },
             { name: "teamMembers", type: "list", items: { type: "object", fields: [
+              { name: "id", type: "string" },
               { name: "name", type: "string" },
-              { name: "position", type: "string" },
-              { name: "bio", type: "markdown" },
-              { name: "image", type: "image" }
+              { name: "role", type: "string" },
+              { name: "image", type: "string" },
+              { name: "summary", type: "string" },
+              { name: "details", type: "list", items: { type: "string" } }
             ]}}
           ]
         },
@@ -73,7 +98,15 @@ module.exports = {
           filePath: "content/pages/contact.json",
           fields: [
             { name: "title", type: "string", required: true },
-            { name: "address", type: "string" },
+            { name: "description", type: "string" },
+            { name: "heroImage", type: "string" },
+            { name: "address", type: "object", fields: [
+              { name: "street", type: "string" },
+              { name: "city", type: "string" },
+              { name: "state", type: "string" },
+              { name: "postcode", type: "string" },
+              { name: "country", type: "string" }
+            ]},
             { name: "email", type: "string" },
             { name: "phone", type: "string" }
           ]
@@ -85,7 +118,11 @@ module.exports = {
           filePath: "content/pages/privacy-policy.json",
           fields: [
             { name: "title", type: "string", required: true },
-            { name: "content", type: "markdown" }
+            { name: "lastUpdated", type: "string" },
+            { name: "sections", type: "list", items: { type: "object", fields: [
+              { name: "title", type: "string" },
+              { name: "content", type: "markdown" }
+            ]}}
           ]
         },
         {
@@ -95,68 +132,51 @@ module.exports = {
           filePath: "content/pages/terms-of-use.json",
           fields: [
             { name: "title", type: "string", required: true },
-            { name: "content", type: "markdown" }
+            { name: "lastUpdated", type: "string" },
+            { name: "sections", type: "list", items: { type: "object", fields: [
+              { name: "title", type: "string" },
+              { name: "content", type: "markdown" }
+            ]}}
           ]
         },
         
-        // Component Models
+        // Section Models
         {
           name: "HeroSection",
           type: "object",
           fields: [
-            { name: "title", type: "string" },
-            { name: "subtitle", type: "string" },
-            { name: "backgroundImage", type: "image" },
-            { name: "buttonText", type: "string" },
-            { name: "buttonLink", type: "string" }
+            { name: "type", type: "string", required: true },
+            { name: "heading", type: "string" },
+            { name: "subheading", type: "string" },
+            { name: "videoUrl", type: "string" }
           ]
         },
         {
           name: "ProvenTrackRecordSection",
           type: "object",
           fields: [
-            { name: "title", type: "string" },
-            { name: "description", type: "markdown" },
-            { name: "stats", type: "list", items: { type: "object", fields: [
-              { name: "value", type: "string" },
-              { name: "label", type: "string" }
-            ]}}
+            { name: "type", type: "string", required: true }
           ]
         },
         {
           name: "PastInvestmentsSection",
           type: "object",
           fields: [
-            { name: "title", type: "string" },
-            { name: "description", type: "markdown" },
-            { name: "investments", type: "list", items: { type: "object", fields: [
-              { name: "name", type: "string" },
-              { name: "description", type: "string" },
-              { name: "image", type: "image" }
-            ]}}
+            { name: "type", type: "string", required: true }
           ]
         },
         {
           name: "PerformanceSection",
           type: "object",
           fields: [
-            { name: "title", type: "string" },
-            { name: "description", type: "markdown" },
-            { name: "metrics", type: "list", items: { type: "object", fields: [
-              { name: "label", type: "string" },
-              { name: "value", type: "string" }
-            ]}}
+            { name: "type", type: "string", required: true }
           ]
         },
         {
           name: "LogoShowcaseSection",
           type: "object",
           fields: [
-            { name: "title", type: "string" },
-            { name: "logos", type: "list", items: { type: "object", fields: [
-              { name: "name", type: "string" },
-              { name: "image", type: "image" }
-            ]}}
+            { name: "type", type: "string", required: true }
           ]
         }
       ]
