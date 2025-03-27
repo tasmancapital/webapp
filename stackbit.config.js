@@ -15,7 +15,7 @@ module.exports = defineStackbitConfig({
       models: [
         // Page Models
         {
-          name: "HomePage",
+          name: "home",
           type: "page",
           urlPath: "/",
           filePath: "project/src/content/pages/home.json",
@@ -27,7 +27,7 @@ module.exports = defineStackbitConfig({
           ]
         },
         {
-          name: "AboutPage",
+          name: "about",
           type: "page",
           urlPath: "/about",
           filePath: "project/src/content/pages/about.json",
@@ -47,7 +47,7 @@ module.exports = defineStackbitConfig({
           ]
         },
         {
-          name: "InvestmentsPage",
+          name: "investments",
           type: "page",
           urlPath: "/investments",
           filePath: "project/src/content/pages/investments.json",
@@ -68,7 +68,7 @@ module.exports = defineStackbitConfig({
           ]
         },
         {
-          name: "TeamPage",
+          name: "team",
           type: "page",
           urlPath: "/team",
           filePath: "project/src/content/pages/team.json",
@@ -87,7 +87,7 @@ module.exports = defineStackbitConfig({
           ]
         },
         {
-          name: "ContactPage",
+          name: "contact",
           type: "page",
           urlPath: "/contact",
           filePath: "project/src/content/pages/contact.json",
@@ -107,7 +107,7 @@ module.exports = defineStackbitConfig({
           ]
         },
         {
-          name: "PrivacyPolicyPage",
+          name: "privacy-policy",
           type: "page",
           urlPath: "/privacy-policy",
           filePath: "project/src/content/pages/privacy-policy.json",
@@ -121,7 +121,7 @@ module.exports = defineStackbitConfig({
           ]
         },
         {
-          name: "TermsOfUsePage",
+          name: "terms-of-use",
           type: "page",
           urlPath: "/terms-of-use",
           filePath: "project/src/content/pages/terms-of-use.json",
@@ -197,13 +197,9 @@ module.exports = defineStackbitConfig({
       })
       // 3. Map each document to a SiteMapEntry
       .map(document => {
-        // Get the file name from the document ID (which is the file path)
-        const fileName = document.id?.split('/').pop()?.replace('.json', '') || '';
-        console.log('Document ID:', document.id, 'File name:', fileName);
-        
-        // Map the file name to its corresponding URL
+        // Map the model name to its corresponding URL
         const urlModel = (() => {
-          switch (fileName) {
+          switch (document.modelName) {
             case 'home':
               return '';
             case 'about':
@@ -219,18 +215,18 @@ module.exports = defineStackbitConfig({
             case 'terms-of-use':
               return 'terms-of-use';
             default:
-              console.log('Unknown file name:', fileName);
+              console.log('Unknown model name:', document.modelName);
               return null;
           }
         })();
         
-        console.log('Mapping document:', fileName, 'to URL:', urlModel ? `/${urlModel}` : '/');
+        console.log('Mapping document:', document.modelName, 'to URL:', urlModel ? `/${urlModel}` : '/');
         
         return {
           stableId: document.id,
           urlPath: urlModel ? `/${urlModel}` : '/',
           document,
-          isHomePage: fileName === 'home'
+          isHomePage: document.modelName === 'home'
         };
       })
       .filter(Boolean);
