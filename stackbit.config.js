@@ -4,7 +4,7 @@
  * @type {import('@stackbit/types').StackbitConfig}
  */
 module.exports = {
-  stackbitVersion: '~0.6.0',
+  stackbitVersion: '~2.1.14',
   contentSources: [
     {
       name: 'git',
