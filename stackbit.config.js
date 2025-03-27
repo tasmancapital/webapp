@@ -3,21 +3,15 @@
 /**
  * @type {import('@stackbit/types').StackbitConfig}
  */
-module.exports = {
+const { defineStackbitConfig } = require("@stackbit/types");
+const { GitContentSource } = require("@stackbit/cms-git");
+
+module.exports = defineStackbitConfig({
   stackbitVersion: '~2.1.14',
   contentSources: [
-    {
-      id: 'content',
-      driver: {
-        type: 'git',
-        repo: {
-          type: 'github',
-          url: 'https://github.com/tasmancapital/webapp'
-        },
-        rootPath: '.',
-        contentDirs: ['content']
-      },
-      modelTypeKey: 'type',
+    new GitContentSource({
+      rootPath: __dirname,
+      contentDirs: ["content"],
       models: [
         // Page Models
         {
@@ -181,6 +175,47 @@ module.exports = {
           ]
         }
       ]
-    }
-  ]
-};
+    })
+  ],
+  // Add siteMap function to connect page models to URLs
+  siteMap: ({ documents, models }) => {
+    // 1. Filter all page models
+    const pageModels = models.filter(m => m.type === "page");
+    
+    return documents
+      // 2. Filter all documents which are of a page model
+      .filter(d => pageModels.some(m => m.name === d.modelName))
+      // 3. Map each document to a SiteMapEntry
+      .map(document => {
+        // Map the model name to its corresponding URL
+        const urlModel = (() => {
+          switch (document.modelName) {
+            case 'HomePage':
+              return '';
+            case 'AboutPage':
+              return 'about';
+            case 'InvestmentsPage':
+              return 'investments';
+            case 'TeamPage':
+              return 'team';
+            case 'ContactPage':
+              return 'contact';
+            case 'PrivacyPolicyPage':
+              return 'privacy-policy';
+            case 'TermsOfUsePage':
+              return 'terms-of-use';
+            default:
+              return null;
+          }
+        })();
+        
+        return {
+          stableId: document.id,
+          urlPath: urlModel ? `/${urlModel}` : '/',
+          document,
+          isHomePage: document.modelName === 'HomePage'
+        };
+      })
+      .filter(Boolean);
+  }
+});
