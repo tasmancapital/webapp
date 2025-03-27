@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
-import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
-import { runMigrations } from './lib/migrations';
-import Navbar from './components/Navbar';
 import { useLayoutEffect } from 'react';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ProvenTrackRecord from './components/ProvenTrackRecord';
 import PastInvestments from './components/PastInvestments';
@@ -14,7 +12,6 @@ import Investments from './pages/Investments';
 import Team from './pages/Team';
 import TermsOfUse from './pages/TermsOfUse';
 import PrivacyPolicy from './pages/PrivacyPolicy';
-import Login from './pages/Login';
 import Contact from './pages/Contact';
 import TestPage from './pages/TestPage';
 import NetlifyVisualEditing from './components/NetlifyVisualEditing';
@@ -26,11 +23,8 @@ function App() {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  useEffect(() => {
-    // Run migrations on app start
-    runMigrations().catch(console.error);
-  }, [location.pathname]);
-
+  // No longer need to run migrations since we're using SQLite
+  
   return (
     <>
       <Routes>
@@ -52,7 +46,6 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-use" element={<TermsOfUse />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/test" element={<TestPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
