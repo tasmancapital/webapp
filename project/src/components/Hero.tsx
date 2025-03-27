@@ -1,11 +1,11 @@
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import CookieConsent from './CookieConsent';
 
 const Hero = () => {
   return (
-    <div className="relative min-h-[80vh] md:min-h-screen flex items-center overflow-hidden">
+    <div 
+      className="relative min-h-[80vh] md:min-h-screen flex items-center overflow-hidden"
+      data-sb-object-id="hero"
+    >
       <div className="absolute inset-0 w-full h-full">
         <div className="relative w-full h-full">
           <video
@@ -19,6 +19,7 @@ const Hero = () => {
               WebkitBackfaceVisibility: 'hidden',
               backfaceVisibility: 'hidden'
             }}
+            data-sb-field-path="videoUrl"
           >
             <source src="https://thinkenergy.au/tasman/tasman_capital_landing.mp4" type="video/mp4" />
           </video>
@@ -28,7 +29,10 @@ const Hero = () => {
       
       <div className="relative w-full">
         <div className="container-xl">
-          <h1 className="heading-xl mb-4 md:mb-8 max-w-5xl">
+          <h1 
+            className="heading-xl mb-4 md:mb-8 max-w-5xl"
+            data-sb-field-path="heading"
+          >
             <div className="relative inline-block text-foreground px-1">
               <span className="relative z-10">Building Great</span>
               <div className="absolute inset-0 bg-gradient-to-r from-foreground/5 to-transparent blur-2xl transform -skew-y-6"></div>
@@ -42,7 +46,10 @@ const Hero = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-foreground/5 to-transparent blur-2xl transform -skew-y-6"></div>
             </div>
           </h1>
-          <p className="text-xl md:text-2xl text-foreground leading-relaxed max-w-2xl mb-8 md:mb-10 px-1">
+          <p 
+            className="text-xl md:text-2xl text-foreground leading-relaxed max-w-2xl mb-8 md:mb-10 px-1"
+            data-sb-field-path="subheading"
+          >
             A leading private investment firm with a proven track record of 
             creating value through strategic partnerships and operational excellence.
           </p>

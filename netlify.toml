@@ -10,7 +10,7 @@
 # Environment variables
 [build.environment]
   NETLIFY_VISUAL_EDITING = "true"
-  NODE_VERSION = "23.6.0"
+  NODE_VERSION = "18"
   # Add polyfills for crypto
   NODE_OPTIONS = "--experimental-global-webcrypto"
 

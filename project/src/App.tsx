@@ -15,17 +15,28 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import Contact from './pages/Contact';
 import TestPage from './pages/TestPage';
 
-function App() {
-  const location = useLocation();
-
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
-
-  // No longer need to run migrations since we're using SQLite
+// ScrollToTop component to ensure scroll position resets on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
   
+  useLayoutEffect(() => {
+    // Scroll to top with a slight delay to ensure DOM updates are complete
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant'
+      });
+    }, 0);
+  }, [pathname]);
+  
+  return null;
+}
+
+function App() {
   return (
     <>
+      <ScrollToTop />
       <Routes>
         {/* Add catch-all route at the end */}
         <Route path="/" element={

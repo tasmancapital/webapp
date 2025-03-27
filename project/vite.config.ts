@@ -4,6 +4,14 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   base: '/',
+  server: {
+    // Allow connections from Netlify Visual Editor
+    cors: true,
+    hmr: {
+      // Enable HMR for content changes
+      overlay: true
+    }
+  },
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

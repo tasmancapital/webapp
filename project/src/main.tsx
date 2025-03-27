@@ -4,6 +4,10 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
 import './index.css';
 import { ThemeProvider } from './lib/ThemeContext';
+import { setupContentReload } from './lib/netlifyVisualEditor';
+
+// Initialize Netlify Visual Editor content reload support
+setupContentReload();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
