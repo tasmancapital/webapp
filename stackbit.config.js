@@ -182,38 +182,55 @@ module.exports = defineStackbitConfig({
     // 1. Filter all page models
     const pageModels = models.filter(m => m.type === "page");
     
+    // Debug: Log the documents and models to help diagnose issues
+    console.log('Available models:', models.map(m => m.name));
+    console.log('Available documents:', documents.map(d => d.modelName));
+    
     return documents
       // 2. Filter all documents which are of a page model
-      .filter(d => pageModels.some(m => m.name === d.modelName))
+      .filter(d => {
+        const isPageModel = pageModels.some(m => m.name === d.modelName);
+        if (!isPageModel) {
+          console.log('Skipping document with model:', d.modelName);
+        }
+        return isPageModel;
+      })
       // 3. Map each document to a SiteMapEntry
       .map(document => {
-        // Map the model name to its corresponding URL
+        // Get the file name from the document ID (which is the file path)
+        const fileName = document.id?.split('/').pop()?.replace('.json', '') || '';
+        console.log('Document ID:', document.id, 'File name:', fileName);
+        
+        // Map the file name to its corresponding URL
         const urlModel = (() => {
-          switch (document.modelName) {
-            case 'HomePage':
+          switch (fileName) {
+            case 'home':
               return '';
-            case 'AboutPage':
+            case 'about':
               return 'about';
-            case 'InvestmentsPage':
+            case 'investments':
               return 'investments';
-            case 'TeamPage':
+            case 'team':
               return 'team';
-            case 'ContactPage':
+            case 'contact':
               return 'contact';
-            case 'PrivacyPolicyPage':
+            case 'privacy-policy':
               return 'privacy-policy';
-            case 'TermsOfUsePage':
+            case 'terms-of-use':
               return 'terms-of-use';
             default:
+              console.log('Unknown file name:', fileName);
               return null;
           }
         })();
+        
+        console.log('Mapping document:', fileName, 'to URL:', urlModel ? `/${urlModel}` : '/');
         
         return {
           stableId: document.id,
           urlPath: urlModel ? `/${urlModel}` : '/',
           document,
-          isHomePage: document.modelName === 'HomePage'
+          isHomePage: fileName === 'home'
         };
       })
       .filter(Boolean);
