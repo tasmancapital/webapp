@@ -11,7 +11,8 @@ module.exports = {
       driver: {
         type: 'git',
         repo: {
-          type: 'local'
+          type: 'github',
+          url: 'https://github.com/tasmancapital/webapp'
         },
         rootPath: '.',
         contentDirs: ['content']
