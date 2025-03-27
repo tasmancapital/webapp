@@ -134,11 +134,11 @@ module.exports = defineStackbitConfig({
             ]}}
           ]
         },
-        
-        // Section Models
+
+        // Component Models
         {
           name: "HeroSection",
-          type: "object",
+          type: "data",
           fields: [
             { name: "type", type: "string", required: true },
             { name: "heading", type: "string" },
@@ -148,28 +148,28 @@ module.exports = defineStackbitConfig({
         },
         {
           name: "ProvenTrackRecordSection",
-          type: "object",
+          type: "data",
           fields: [
             { name: "type", type: "string", required: true }
           ]
         },
         {
           name: "PastInvestmentsSection",
-          type: "object",
+          type: "data",
           fields: [
             { name: "type", type: "string", required: true }
           ]
         },
         {
           name: "PerformanceSection",
-          type: "object",
+          type: "data",
           fields: [
             { name: "type", type: "string", required: true }
           ]
         },
         {
           name: "LogoShowcaseSection",
-          type: "object",
+          type: "data",
           fields: [
             { name: "type", type: "string", required: true }
           ]
@@ -236,18 +236,8 @@ module.exports = defineStackbitConfig({
   assetSources: [
     {
       name: 'thinkenergy',
-      title: 'Think Energy Assets',
-      icon: 'https://thinkenergy.au/favicon.ico',
-      url: 'https://thinkenergy.au/tasman/',
-      transform: (data) => {
-        // Transform the selected asset data
-        return {
-          src: data.url,
-          alt: data.alt || '',
-          width: data.width,
-          height: data.height
-        };
-      }
+      type: 'iframe',
+      url: 'https://thinkenergy.au/tasman/'
     }
   ]
 });
