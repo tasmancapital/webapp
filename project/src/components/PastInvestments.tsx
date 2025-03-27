@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion, useAnimationControls } from 'framer-motion';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const investments = [
   {
@@ -87,19 +87,6 @@ const investments = [
   }
 ];
 
-// Sort investments by exit date (most recent first)
-const sortedInvestments = [...investments].sort((a, b) => {
-  // Put current investments at the end
-  if (a.type === 'Current Investment' && b.type === 'Current Investment') return 0;
-  if (a.type === 'Current Investment') return 1;
-  if (b.type === 'Current Investment') return -1;
-  
-  // Sort by exit year for realised investments
-  const exitYearA = parseInt(a.exit || '0');
-  const exitYearB = parseInt(b.exit || '0');
-  return exitYearB - exitYearA;
-});
-
 const PastInvestments = () => {
   const controls = useAnimationControls();
   const navigate = useNavigate();
@@ -117,10 +104,13 @@ const PastInvestments = () => {
         repeat: Infinity
       }
     });
-  }, []);
+  }, [controls]);
 
   return (
-    <section className="section-padding">
+    <section 
+      className="section-padding"
+      data-sb-object-id="pastInvestments"
+    >
       <div className="container-xl mb-16">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -128,7 +118,10 @@ const PastInvestments = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h2 className="text-[1.75rem] sm:text-[2.25rem] md:text-[2.75rem] font-light tracking-tight leading-[1.1] mb-6 text-foreground">
+          <h2 
+            className="text-[1.75rem] sm:text-[2.25rem] md:text-[2.75rem] font-light tracking-tight leading-[1.1] mb-6 text-foreground"
+            data-sb-field-path="title"
+          >
             <div className="relative inline-block">
               <span className="relative z-10">Investments</span>
             </div>
@@ -138,6 +131,7 @@ const PastInvestments = () => {
 
       <div 
         className="relative w-full overflow-hidden px-4"
+        data-sb-field-path="investmentsContainer"
       >
         <motion.div
           animate={controls}
@@ -148,17 +142,19 @@ const PastInvestments = () => {
             paddingRight: "2rem"
           }}
         >
-          {[...sortedInvestments, ...sortedInvestments].map((investment, index) => (
+          {[...investments, ...investments].map((investment, index) => (
             <button
               key={`${investment.name}-${index}`}
               onClick={() => handleLogoClick(investment.url)}
               className="relative h-[111px] w-[186px] flex-none p-4 transition-transform duration-300 hover:scale-95"
+              data-sb-field-path={index < investments.length ? `investments.${index}` : undefined}
             >
               <div className="w-full h-full flex items-center justify-center">
                 <img
                   src={investment.logo}
                   alt={investment.name}
                   className="w-full h-full object-contain"
+                  data-sb-field-path={index < investments.length ? `investments.${index}.logo` : undefined}
                 />
               </div>
             </button>

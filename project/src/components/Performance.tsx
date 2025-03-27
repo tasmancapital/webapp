@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import RubiksCube from './RubiksCube';
 import OperationalGear from './OperationalGear';
@@ -21,7 +20,10 @@ const Performance = () => {
   ];
 
   return (
-    <section className="section-padding relative overflow-hidden">
+    <section 
+      className="section-padding relative overflow-hidden"
+      data-sb-object-id="performance"
+    >
       <div className="absolute inset-0 bg-background"></div>
       
       <div className="container-xl relative z-10">
@@ -31,12 +33,18 @@ const Performance = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-[1.75rem] sm:text-[2.25rem] md:text-[2.75rem] font-light tracking-tight leading-[1.1] mb-4 md:mb-6">
+          <h2 
+            className="text-[1.75rem] sm:text-[2.25rem] md:text-[2.75rem] font-light tracking-tight leading-[1.1] mb-4 md:mb-6"
+            data-sb-field-path="title"
+          >
             <div className="relative inline-block">
               <span className="relative z-10 text-foreground">Strategies</span>
              </div>
             </h2>
-          <p className="description-text max-w-3xl mx-auto mb-8">
+          <p 
+            className="description-text max-w-3xl mx-auto mb-8"
+            data-sb-field-path="description"
+          >
             Our investment approach focuses on three core strategies that have consistently 
             delivered superior returns across market cycles.
           </p>
@@ -51,13 +59,20 @@ const Performance = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
               className="relative h-[400px]"
+              data-sb-field-path={`strategies.${index}`}
             >
               <div className="absolute inset-0 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 p-8">
                 <div className="relative h-full flex flex-col">
-                  <h3 className="text-2xl font-medium mb-4 text-zinc-900 dark:text-white">
+                  <h3 
+                    className="text-2xl font-medium mb-4 text-zinc-900 dark:text-white"
+                    data-sb-field-path="title"
+                  >
                     {strategy.title}
                   </h3>
-                  <p className="text-base text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                  <p 
+                    className="text-base text-zinc-600 dark:text-zinc-300 leading-relaxed"
+                    data-sb-field-path="description"
+                  >
                     {strategy.description}
                   </p>
                   

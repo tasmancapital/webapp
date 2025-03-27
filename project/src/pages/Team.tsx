@@ -154,7 +154,10 @@ const Team = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div 
+      className="min-h-screen bg-background"
+      data-sb-object-id="teamPage"
+    >
       <Navbar />
       <main>
         <div className="relative min-h-[60vh] md:min-h-[70vh] flex items-center overflow-hidden">
@@ -170,6 +173,7 @@ const Team = () => {
                   WebkitBackfaceVisibility: 'hidden',
                   backfaceVisibility: 'hidden'
                 }}
+                data-sb-field-path="heroVideo"
               >
                 <source src="https://thinkenergy.au/tasman/tasman-capital.mp4" type="video/mp4" />
               </video>
@@ -185,8 +189,16 @@ const Team = () => {
               animate={{ opacity: 1, y: 0 }}
               className="text-center mb-16 pt-32"
             >
-              <h1 className="heading-xl mb-6">Our Team</h1>
-              <p className="description-text max-w-3xl mx-auto">
+              <h1 
+                className="heading-xl mb-6"
+                data-sb-field-path="title"
+              >
+                Our Team
+              </h1>
+              <p 
+                className="description-text max-w-3xl mx-auto"
+                data-sb-field-path="description"
+              >
                 Meet our experienced team of investment professionals dedicated to creating value 
                 through strategic partnerships and operational excellence.
               </p>
@@ -194,48 +206,75 @@ const Team = () => {
           </div>
         </div>
 
-        <div className="container-xl pb-16">
+        <div 
+          className="container-xl pb-16"
+          data-sb-field-path="teamMembers"
+        >
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {team.map((member, i) => (
               <motion.div 
                 key={member.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className="relative"
+                transition={{ delay: 0.1 * i }}
+                className="glass-card group relative overflow-hidden"
+                data-sb-field-path={`.${i}`}
               >
-                <div 
-                  onClick={() => setExpandedMember(expandedMember === member.id ? null : member.id)}
-                  className="cursor-pointer"
-                >
-                  <div className="relative h-[400px] overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 bg-white">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="absolute inset-0 w-full h-full object-cover object-center"
+                {/* Card Content */}
+                <div className="relative z-10 p-6">
+                  <div className="mb-4 aspect-square overflow-hidden rounded-xl">
+                    <img 
+                      src={member.image} 
+                      alt={member.name} 
+                      className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                      data-sb-field-path="image"
                     />
                   </div>
-                  
-                  <div className="mt-4">
-                    <h3 className="text-lg font-medium text-zinc-900 dark:text-white">{member.name}</h3>
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400">{member.role}</p>
-                  </div>
+                  <h3 
+                    className="text-xl font-semibold mb-1"
+                    data-sb-field-path="name"
+                  >
+                    {member.name}
+                  </h3>
+                  <p 
+                    className="text-sm text-zinc-400 mb-3"
+                    data-sb-field-path="role"
+                  >
+                    {member.role}
+                  </p>
+                  <p 
+                    className="text-sm text-zinc-500 dark:text-zinc-400 mb-4"
+                    data-sb-field-path="summary"
+                  >
+                    {member.summary}
+                  </p>
+                  <button
+                    onClick={() => setExpandedMember(expandedMember === member.id ? null : member.id)}
+                    className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+                  >
+                    {expandedMember === member.id ? 'View Less' : 'View More'}
+                  </button>
                 </div>
 
+                {/* Expanded Details */}
                 {expandedMember === member.id && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="mt-4 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-white/10 p-6"
+                    animate={{ opacity: 1, height: 'auto' }}
+                    className="px-6 pb-6"
+                    data-sb-field-path="details"
                   >
-                    <div className="prose prose-zinc dark:prose-invert">
-                      <p className="mb-4">{member.summary}</p>
-                      {member.details.map((detail, index) => (
-                        <p key={index} className="text-sm text-zinc-600 dark:text-zinc-400 mb-2">
-                          {detail}
-                        </p>
-                      ))}
+                    <div className="pt-4 border-t border-zinc-200 dark:border-white/10">
+                      <ul className="space-y-2 text-sm text-zinc-500 dark:text-zinc-400">
+                        {member.details.map((detail, index) => (
+                          <li 
+                            key={index}
+                            data-sb-field-path={`.${index}`}
+                          >
+                            {detail}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </motion.div>
                 )}

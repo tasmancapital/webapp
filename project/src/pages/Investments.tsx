@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { ArrowUpRight, ArrowUpDown, Calendar } from 'lucide-react';
-import WaveBackground from '../components/WaveBackground';
 
 const investments = [
   {
@@ -192,7 +191,10 @@ const Investments = () => {
     }
   }, [sortBy, filterType]);
   return (
-    <div className="min-h-screen bg-background">
+    <div 
+      className="min-h-screen bg-background"
+      data-sb-object-id="investmentsPage"
+    >
       <Navbar />
       <main>
         <div className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
@@ -201,6 +203,7 @@ const Investments = () => {
               src="https://thinkenergy.au/tasman/sydney_tasman_capital_header.jpeg"
               alt="Sydney Tasman Capital"
               className="absolute top-1/2 left-1/2 w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-60"
+              data-sb-field-path="heroImage"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/15 to-background/5"></div>
           </div>
@@ -213,8 +216,16 @@ const Investments = () => {
               animate={{ opacity: 1, y: 0 }}
               className="text-center mb-8 pt-24"
             >
-              <h1 className="heading-xl mb-6">Investment Portfolio</h1>
-              <p className="description-text max-w-3xl mx-auto">
+              <h1 
+                className="heading-xl mb-6"
+                data-sb-field-path="title"
+              >
+                Investment Portfolio
+              </h1>
+              <p 
+                className="description-text max-w-3xl mx-auto"
+                data-sb-field-path="description"
+              >
                 Our portfolio represents a diverse range of successful investments across multiple sectors, 
                 demonstrating our ability to create value through strategic partnerships and operational excellence.
               </p>
@@ -222,7 +233,10 @@ const Investments = () => {
           </div>
         </div>
 
-        <section className="py-8">
+        <section 
+          className="py-8"
+          data-sb-field-path="investmentsSection"
+        >
           <div className="container-xl">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full">
@@ -303,7 +317,10 @@ const Investments = () => {
             </div>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div 
+              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+              data-sb-field-path="investments"
+            >
               {sortedInvestments.map((investment, index) => (
                 <motion.div
                   key={investment.name}
@@ -312,6 +329,7 @@ const Investments = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   className="group relative h-full perspective-[2000px]"
+                  data-sb-field-path={`.${index}`}
                 >
                   <div className="relative h-full w-full transition-all duration-700 transform-style-3d group-hover:rotate-y-12 group-hover:rotate-x-12 group-hover:translate-y-[-8px]">
                     <div className="h-full rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 overflow-hidden flex flex-col">
@@ -321,6 +339,7 @@ const Investments = () => {
                             src={investment.logo}
                             alt={investment.name}
                             className="max-w-[200px] max-h-[100px] w-auto h-auto object-contain"
+                            data-sb-field-path="logo"
                           />
                         </div>
                       </div>
@@ -330,26 +349,43 @@ const Investments = () => {
                           investment.type === 'Current Investment'
                             ? 'bg-emerald-500/10 text-emerald-500'
                             : 'bg-blue-500/10 text-blue-500'
-                        }`}>
+                        }`}
+                        data-sb-field-path="type"
+                        >
                           {investment.type}
                         </span>
 
-                        <h3 className="text-xl font-medium mb-3 text-zinc-900 dark:text-white">
+                        <h3 
+                          className="text-xl font-medium mb-3 text-zinc-900 dark:text-white"
+                          data-sb-field-path="name"
+                        >
                           {investment.name}
                         </h3>
                         
-                        <p className="text-zinc-600 dark:text-zinc-300 mb-6">
+                        <p 
+                          className="text-zinc-600 dark:text-zinc-300 mb-6"
+                          data-sb-field-path="description"
+                        >
                           {investment.description}
                         </p>
                         <div className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
-                          <p className="border-b border-zinc-100 dark:border-white/10 py-2">
+                          <p 
+                            className="border-b border-zinc-100 dark:border-white/10 py-2"
+                            data-sb-field-path="sector"
+                          >
                             <span>Sector: {investment.sector}</span>
                           </p>
-                          <p className="border-b border-zinc-100 dark:border-white/10 py-2">
+                          <p 
+                            className="border-b border-zinc-100 dark:border-white/10 py-2"
+                            data-sb-field-path="investment"
+                          >
                             <span>Investment: {investment.investment}</span>
                           </p>
                           {investment.exit && (
-                            <p className="border-b border-zinc-100 dark:border-white/10 py-2">
+                            <p 
+                              className="border-b border-zinc-100 dark:border-white/10 py-2"
+                              data-sb-field-path="exit"
+                            >
                               <span>Exit: {investment.exit}</span>
                             </p>
                           )}
@@ -361,6 +397,7 @@ const Investments = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="h-10 w-10 rounded-full bg-zinc-100 dark:bg-white/10 flex items-center justify-center group-hover:bg-zinc-200 dark:group-hover:bg-white/20 transition-colors"
+                            data-sb-field-path="url"
                           >
                             <ArrowUpRight className="w-5 h-5 text-zinc-600 dark:text-zinc-400" />
                           </a>
@@ -375,7 +412,10 @@ const Investments = () => {
         </section>
         
         <div className="container-xl pb-16">
-          <p className="text-sm text-zinc-500 dark:text-zinc-400 italic text-center">
+          <p 
+            className="text-sm text-zinc-500 dark:text-zinc-400 italic text-center"
+            data-sb-field-path="disclaimer"
+          >
             *NB: A number of the above transactions were completed by Tasman's partners whilst employed at previous firms
           </p>
         </div>
