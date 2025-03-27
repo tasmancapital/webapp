@@ -15,6 +15,11 @@ const getDb = async () => {
   // Check if we're in the Netlify environment
   const isNetlify = process.env.NETLIFY === 'true';
   console.log('Environment:', isNetlify ? 'Netlify' : 'Local');
+  console.log('Environment variables:', {
+    NETLIFY: process.env.NETLIFY,
+    NODE_ENV: process.env.NODE_ENV,
+    JWT_SECRET: process.env.JWT_SECRET ? 'Set (value hidden)' : 'Not set'
+  });
   
   // Define the database path
   let dbPath;
@@ -39,8 +44,20 @@ const getDb = async () => {
       const sourceDbPath = path.join(__dirname, '..', '..', 'data', 'visual-editor.db');
       console.log('Source database path:', sourceDbPath);
       
-      if (fs.existsSync(sourceDbPath)) {
-        try {
+      try {
+        // Check if source file exists
+        const sourceExists = fs.existsSync(sourceDbPath);
+        console.log('Source database exists:', sourceExists);
+        
+        if (sourceExists) {
+          // Get source file stats
+          const sourceStats = fs.statSync(sourceDbPath);
+          console.log('Source database stats:', {
+            size: sourceStats.size,
+            permissions: sourceStats.mode.toString(8),
+            isFile: sourceStats.isFile()
+          });
+          
           // Copy the pre-built database file to /tmp
           fs.copyFileSync(sourceDbPath, dbPath);
           console.log('Pre-built database file copied to /tmp successfully');
@@ -48,11 +65,24 @@ const getDb = async () => {
           // Set permissions on the copied file
           fs.chmodSync(dbPath, 0o666);
           console.log('File permissions set to 666 (readable and writable)');
-        } catch (copyError) {
-          console.error('Error copying pre-built database file:', copyError);
+          
+          // Verify the copied file
+          const destExists = fs.existsSync(dbPath);
+          console.log('Destination database exists:', destExists);
+          
+          if (destExists) {
+            const destStats = fs.statSync(dbPath);
+            console.log('Destination database stats:', {
+              size: destStats.size,
+              permissions: destStats.mode.toString(8),
+              isFile: destStats.isFile()
+            });
+          }
+        } else {
+          console.error('Source database file does not exist');
         }
-      } else {
-        console.error('Pre-built database file not found:', sourceDbPath);
+      } catch (copyError) {
+        console.error('Error copying pre-built database file:', copyError);
       }
     } else {
       console.log('Database file exists in /tmp:', dbPath);
@@ -136,7 +166,10 @@ export const handler: Handler = async (event) => {
     if (action === 'login') {
       const { email, password } = data;
       
+      console.log('Login attempt:', { email });
+      
       if (!email || !password) {
+        console.log('Login failed: Email or password missing');
         return {
           statusCode: 400,
           headers: corsHeaders,
@@ -148,10 +181,30 @@ export const handler: Handler = async (event) => {
       }
       
       try {
+        console.log('Connecting to database for login...');
         const db = await getDb();
-        const user = await db.get('SELECT * FROM users WHERE email = ?', [email]);
+        console.log('Database connected, querying for user...');
         
-        if (!user || !bcrypt.compareSync(password, user.password_hash)) {
+        const user = await db.get('SELECT * FROM users WHERE email = ?', [email]);
+        console.log('User query result:', user ? 'User found' : 'User not found');
+        
+        if (!user) {
+          console.log('Login failed: User not found');
+          return {
+            statusCode: 401,
+            headers: corsHeaders,
+            body: JSON.stringify({
+              success: false,
+              message: 'Invalid email or password'
+            })
+          };
+        }
+        
+        const passwordMatch = bcrypt.compareSync(password, user.password_hash);
+        console.log('Password check result:', passwordMatch ? 'Password matches' : 'Password does not match');
+        
+        if (!passwordMatch) {
+          console.log('Login failed: Password does not match');
           return {
             statusCode: 401,
             headers: corsHeaders,
@@ -163,6 +216,7 @@ export const handler: Handler = async (event) => {
         }
         
         // Generate JWT token
+        console.log('Generating JWT token...');
         const token = jwt.sign(
           { id: user.id, email: user.email, isAdmin: user.is_admin },
           JWT_SECRET,
