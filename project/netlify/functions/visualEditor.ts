@@ -10,6 +10,12 @@ import { v4 as uuidv4 } from 'uuid';
 // Secret for JWT signing - in production, use environment variables
 const JWT_SECRET = process.env.JWT_SECRET || 'tasman-visual-editor-secret';
 
+// Hardcoded admin credentials for simplicity
+// In a production environment, these should be stored in environment variables
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@tasmancapital.com';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
+const ADMIN_PASSWORD_HASH = bcrypt.hashSync(ADMIN_PASSWORD, 10);
+
 // Database connection
 const getDb = async () => {
   // Check if we're in the Netlify environment
@@ -126,28 +132,24 @@ const getDb = async () => {
 };
 
 // Helper to validate JWT token
-const validateToken = (token: string): Promise<Record<string, unknown>> => {
-  return new Promise((resolve, reject) => {
-    jwt.verify(token, JWT_SECRET, (err, decoded) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(decoded as Record<string, unknown>);
-      }
-    });
-  });
+const validateToken = async (token: string): Promise<Record<string, unknown>> => {
+  try {
+    return jwt.verify(token, JWT_SECRET) as Record<string, unknown>;
+  } catch (error) {
+    console.error('Token validation error:', error);
+    throw new Error('Invalid token');
+  }
 };
 
 // CORS headers
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Content-Type': 'application/json'
 };
 
 export const handler: Handler = async (event) => {
-  console.log('Visual Editor function invoked');
-  
   // Handle preflight requests
   if (event.httpMethod === 'OPTIONS') {
     return {
@@ -180,74 +182,56 @@ export const handler: Handler = async (event) => {
         };
       }
       
-      try {
-        console.log('Connecting to database for login...');
-        const db = await getDb();
-        console.log('Database connected, querying for user...');
-        
-        const user = await db.get('SELECT * FROM users WHERE email = ?', [email]);
-        console.log('User query result:', user ? 'User found' : 'User not found');
-        
-        if (!user) {
-          console.log('Login failed: User not found');
-          return {
-            statusCode: 401,
-            headers: corsHeaders,
-            body: JSON.stringify({
-              success: false,
-              message: 'Invalid email or password'
-            })
-          };
-        }
-        
-        const passwordMatch = bcrypt.compareSync(password, user.password_hash);
-        console.log('Password check result:', passwordMatch ? 'Password matches' : 'Password does not match');
-        
-        if (!passwordMatch) {
-          console.log('Login failed: Password does not match');
-          return {
-            statusCode: 401,
-            headers: corsHeaders,
-            body: JSON.stringify({
-              success: false,
-              message: 'Invalid email or password'
-            })
-          };
-        }
-        
-        // Generate JWT token
-        console.log('Generating JWT token...');
-        const token = jwt.sign(
-          { id: user.id, email: user.email, isAdmin: user.is_admin },
-          JWT_SECRET,
-          { expiresIn: '24h' }
-        );
-        
+      // Simple credential check against hardcoded values
+      if (email !== ADMIN_EMAIL) {
+        console.log('Login failed: User not found');
         return {
-          statusCode: 200,
-          headers: corsHeaders,
-          body: JSON.stringify({
-            success: true,
-            token,
-            user: {
-              id: user.id,
-              email: user.email,
-              name: user.name,
-              isAdmin: user.is_admin
-            }
-          })
-        };
-      } catch (dbError) {
-        console.error('Database error during login:', dbError);
-        return {
-          statusCode: 500,
+          statusCode: 401,
           headers: corsHeaders,
           body: JSON.stringify({
             success: false,
-            message: 'Database error during login'
+            message: 'Invalid email or password'
           })
         };
       }
+      
+      const passwordMatch = bcrypt.compareSync(password, ADMIN_PASSWORD_HASH);
+      console.log('Password check result:', passwordMatch ? 'Password matches' : 'Password does not match');
+      
+      if (!passwordMatch) {
+        console.log('Login failed: Password does not match');
+        return {
+          statusCode: 401,
+          headers: corsHeaders,
+          body: JSON.stringify({
+            success: false,
+            message: 'Invalid email or password'
+          })
+        };
+      }
+      
+      // Generate JWT token
+      console.log('Generating JWT token...');
+      const token = jwt.sign(
+        { id: 'admin-user', email: ADMIN_EMAIL, isAdmin: true },
+        JWT_SECRET,
+        { expiresIn: '24h' }
+      );
+      
+      return {
+        statusCode: 200,
+        headers: corsHeaders,
+        body: JSON.stringify({
+          success: true,
+          token,
+          user: {
+            id: 'admin-user',
+            email: ADMIN_EMAIL,
+            name: 'Admin User',
+            isAdmin: true
+          }
+        })
+      };
     }
     
     // All other endpoints require authentication
@@ -268,8 +252,9 @@ export const handler: Handler = async (event) => {
     try {
       // Validate token but we don't need to use the decoded value directly
       await validateToken(token);
-    } catch {
+    } catch (error) {
       // Token validation failed
+      console.error('Token validation failed:', error);
       return {
         statusCode: 401,
         headers: corsHeaders,
