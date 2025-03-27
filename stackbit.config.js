@@ -11,14 +11,14 @@ module.exports = defineStackbitConfig({
   contentSources: [
     new GitContentSource({
       rootPath: __dirname,
-      contentDirs: ["content"],
+      contentDirs: ["project/src/content"],
       models: [
         // Page Models
         {
           name: "HomePage",
           type: "page",
           urlPath: "/",
-          filePath: "content/pages/home.json",
+          filePath: "project/src/content/pages/home.json",
           fields: [
             { name: "title", type: "string", required: true },
             { name: "subtitle", type: "string" },
@@ -30,7 +30,7 @@ module.exports = defineStackbitConfig({
           name: "AboutPage",
           type: "page",
           urlPath: "/about",
-          filePath: "content/pages/about.json",
+          filePath: "project/src/content/pages/about.json",
           fields: [
             { name: "title", type: "string", required: true },
             { name: "description", type: "markdown" },
@@ -50,7 +50,7 @@ module.exports = defineStackbitConfig({
           name: "InvestmentsPage",
           type: "page",
           urlPath: "/investments",
-          filePath: "content/pages/investments.json",
+          filePath: "project/src/content/pages/investments.json",
           fields: [
             { name: "title", type: "string", required: true },
             { name: "heroImage", type: "string" },
@@ -71,7 +71,7 @@ module.exports = defineStackbitConfig({
           name: "TeamPage",
           type: "page",
           urlPath: "/team",
-          filePath: "content/pages/team.json",
+          filePath: "project/src/content/pages/team.json",
           fields: [
             { name: "title", type: "string", required: true },
             { name: "description", type: "string" },
@@ -90,7 +90,7 @@ module.exports = defineStackbitConfig({
           name: "ContactPage",
           type: "page",
           urlPath: "/contact",
-          filePath: "content/pages/contact.json",
+          filePath: "project/src/content/pages/contact.json",
           fields: [
             { name: "title", type: "string", required: true },
             { name: "description", type: "string" },
@@ -110,7 +110,7 @@ module.exports = defineStackbitConfig({
           name: "PrivacyPolicyPage",
           type: "page",
           urlPath: "/privacy-policy",
-          filePath: "content/pages/privacy-policy.json",
+          filePath: "project/src/content/pages/privacy-policy.json",
           fields: [
             { name: "title", type: "string", required: true },
             { name: "lastUpdated", type: "string" },
@@ -124,7 +124,7 @@ module.exports = defineStackbitConfig({
           name: "TermsOfUsePage",
           type: "page",
           urlPath: "/terms-of-use",
-          filePath: "content/pages/terms-of-use.json",
+          filePath: "project/src/content/pages/terms-of-use.json",
           fields: [
             { name: "title", type: "string", required: true },
             { name: "lastUpdated", type: "string" },
