@@ -9,8 +9,10 @@
 
 # Environment variables
 [build.environment]
-  NODE_VERSION = "16"
   NETLIFY_VISUAL_EDITING = "true"
+  NODE_VERSION = "23.6.0"
+  # Add polyfills for crypto
+  NODE_OPTIONS = "--experimental-global-webcrypto"
 
 # Force HTTPS
 [[redirects]]

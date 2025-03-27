@@ -7,7 +7,7 @@ module.exports = {
   stackbitVersion: '~2.1.14',
   contentSources: [
     {
-      name: 'content',
+      id: 'content',
       driver: {
         type: 'git',
         repo: {
