@@ -239,5 +239,8 @@ module.exports = defineStackbitConfig({
       type: 'iframe',
       url: 'https://thinkenergy.au/tasman/'
     }
-  ]
+  ],
+  
+  // Add dev command for Netlify Visual Editor
+  devCommand: 'cd project && npm run dev'
 });
