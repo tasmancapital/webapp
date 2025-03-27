@@ -217,5 +217,24 @@ module.exports = defineStackbitConfig({
         };
       })
       .filter(Boolean);
-  }
+  },
+  
+  // Add custom asset sources
+  assetSources: [
+    {
+      name: 'thinkenergy',
+      title: 'Think Energy Assets',
+      icon: 'https://thinkenergy.au/favicon.ico',
+      url: 'https://thinkenergy.au/tasman/',
+      transform: (data) => {
+        // Transform the selected asset data
+        return {
+          src: data.url,
+          alt: data.alt || '',
+          width: data.width,
+          height: data.height
+        };
+      }
+    }
+  ]
 });
