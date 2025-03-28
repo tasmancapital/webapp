@@ -271,5 +271,5 @@ module.exports = defineStackbitConfig({
   ],
   
   // Add dev command for Netlify Visual Editor
-  devCommand: 'cd project && npm run dev'
+  devCommand: 'npm run dev'
 });
