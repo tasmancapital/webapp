@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -50,7 +49,7 @@ function About() {
                 {content.title}
               </h1>
               <p 
-                className="description-text max-w-3xl mx-auto"
+                className="description-text max-w-5xl mx-auto px-4"
                 data-sb-field-path="description"
               >
                 {content.description}

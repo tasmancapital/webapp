@@ -1,8 +1,8 @@
 {
   "type": "PerformanceSection",
-  "heading": "Investment Performance",
-  "subheading": "Our disciplined approach has consistently delivered strong returns across market cycles",
-  "description": "At Tasman Capital, we focus on creating value through operational improvements, strategic repositioning, and sustainable growth initiatives. Our hands-on approach and partnership with management teams have been key drivers of our success.",
+  "heading": "Strategies",
+  "subheading": "Our investment approach focuses on three core strategies that have consistently delivered superior returns across market cycles.",
+  "description": "",
   "strategies": [
     {
       "title": "Defensive",
@@ -29,14 +29,9 @@
       "description": "Typical investment horizon for portfolio companies"
     },
     {
-      "label": "Revenue Growth",
-      "value": "2.8x",
-      "description": "Average revenue growth during ownership period"
-    },
-    {
-      "label": "EBITDA Growth",
+      "label": "Multiple on Invested Capital",
       "value": "3.2x",
-      "description": "Average EBITDA growth during ownership period"
+      "description": "Average return multiple across portfolio"
     }
   ]
 }

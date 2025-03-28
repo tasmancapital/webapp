@@ -75,7 +75,7 @@ const ProvenTrackRecord = (props: ProvenTrackRecordProps = {}) => {
           )}
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {stats.map((stat: Stat, index: number) => (
             <motion.div
               key={stat.label}
@@ -83,17 +83,17 @@ const ProvenTrackRecord = (props: ProvenTrackRecordProps = {}) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-secondary/30 backdrop-blur-sm rounded-xl p-6 flex flex-col items-center justify-center text-center"
+              className="bg-white border border-[#e5e5e5] rounded-lg p-6 flex flex-col items-center justify-center text-center"
               data-sb-field-path={`stats.${index}`}
             >
               <div 
-                className="text-3xl md:text-4xl font-medium mb-2 text-primary"
+                className="text-3xl md:text-4xl font-medium mb-2 text-black"
                 data-sb-field-path=".value"
               >
                 {stat.value}
               </div>
               <div 
-                className="text-sm md:text-base text-foreground/80"
+                className="text-sm md:text-base text-gray-600"
                 data-sb-field-path=".label"
               >
                 {stat.label}

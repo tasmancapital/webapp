@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { getContent, annotateContent } from '../lib/contentLoader';
 
 interface TeamMember {
@@ -25,6 +25,24 @@ function Team() {
   
   // Get the team content
   const content: TeamContent = getContent('team');
+
+  // Function to determine image class based on team member ID
+  const getImageClass = (memberId: string) => {
+    if (memberId === 'alex-hardgreave') {
+      return "w-full aspect-[4/5] object-cover object-top scale-110"; // Alex's image slightly bigger
+    } else if (memberId === 'daniel-flynn') {
+      return "w-full aspect-[4/5] object-cover object-top scale-95"; // Daniel's image slightly smaller
+    } else {
+      return "w-full aspect-[4/5] object-cover object-top"; // Default for others
+    }
+  };
+
+  // Handle card click
+  const handleCardClick = (memberId: string) => {
+    // If the clicked card is already expanded, close it
+    // Otherwise, expand the clicked card and close any other expanded card
+    setExpandedMember(expandedMember === memberId ? null : memberId);
+  };
 
   return (
     <div {...annotateContent('team')} className="min-h-screen bg-background">
@@ -84,16 +102,17 @@ function Team() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 data-sb-field-path={`.${index}`}
+                style={{ position: 'relative', zIndex: expandedMember === member.id ? 10 : 1 }}
               >
-                <div className="relative h-full bg-white rounded-md shadow-sm border border-gray-100 overflow-hidden">
+                <div className={`relative h-full bg-white rounded-md shadow-sm ${expandedMember === null || expandedMember === member.id ? 'border border-gray-100' : 'border-0'} overflow-hidden`}>
                   <div 
-                    className="cursor-pointer"
-                    onClick={() => setExpandedMember(expandedMember === member.id ? null : member.id)}
+                    className="cursor-pointer overflow-hidden"
+                    onClick={() => handleCardClick(member.id)}
                   >
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="w-full aspect-[4/5] object-cover object-top"
+                      className={getImageClass(member.id)}
                       data-sb-field-path=".image"
                     />
                   </div>
@@ -113,35 +132,37 @@ function Team() {
                     </p>
                   </div>
                   
-                  {expandedMember === member.id && (
-                    <motion.div 
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="px-4 pb-4 text-left"
-                    >
-                      <p 
-                        className="text-gray-600 text-sm mb-4"
-                        data-sb-field-path=".summary"
+                  <AnimatePresence mode="wait">
+                    {expandedMember === member.id && (
+                      <motion.div 
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="px-4 pb-4 text-left"
                       >
-                        {member.summary}
-                      </p>
-                      <div
-                        className="space-y-2 text-gray-600 text-sm"
-                        data-sb-field-path=".details"
-                      >
-                        {member.details.map((detail, i) => (
-                          <p 
-                            key={i} 
-                            className="mb-2"
-                            data-sb-field-path={`.${i}`}
-                          >
-                            {detail}
-                          </p>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
+                        <p 
+                          className="text-gray-600 text-sm mb-4"
+                          data-sb-field-path=".summary"
+                        >
+                          {member.summary}
+                        </p>
+                        <div
+                          className="space-y-2 text-gray-600 text-sm"
+                          data-sb-field-path=".details"
+                        >
+                          {member.details.map((detail, i) => (
+                            <p 
+                              key={i} 
+                              className="mb-2"
+                              data-sb-field-path={`.${i}`}
+                            >
+                              {detail}
+                            </p>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </motion.div>
             ))}

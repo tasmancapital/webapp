@@ -157,20 +157,17 @@ function Investments() {
                     </button>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 ml-0 sm:ml-8">
-                  <h2 className="text-lg font-medium text-zinc-900 dark:text-white">Sort by:</h2>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => setSortConfig({ 
-                        key: 'exit', 
-                        direction: sortConfig.direction === 'descending' ? 'ascending' : 'descending' 
-                      })}
-                      className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-colors flex-1 sm:flex-initial bg-primary text-primary-foreground"
-                    >
-                      <Calendar className="w-4 h-4" />
-                      <span className="font-medium">Exit Order</span>
-                    </button>
-                  </div>
+                {/* Hidden sort button that still handles sorting functionality */}
+                <div className="hidden">
+                  <button
+                    onClick={() => setSortConfig({ 
+                      key: 'exit', 
+                      direction: sortConfig.direction === 'descending' ? 'ascending' : 'descending' 
+                    })}
+                  >
+                    <Calendar className="w-4 h-4" />
+                    <span className="font-medium">Exit Order</span>
+                  </button>
                 </div>
               </div>
             </div>

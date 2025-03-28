@@ -1,24 +1,24 @@
 {
   "type": "ProvenTrackRecordSection",
-  "heading": "Proven Track Record",
-  "subheading": "Our investment approach is built on a foundation of deep industry expertise, operational excellence, and a commitment to creating sustainable value.",
+  "heading": "Proven Track Record of Excellence",
+  "subheading": "Over 25 years of consistent outperformance in private equity management, with $1.3bn in realised proceeds and a portfolio of successful strategic investments.",
   "stats": [
     {
+      "value": "$1.3bn",
+      "label": "Proceeds Realised"
+    },
+    {
+      "value": "21+",
+      "label": "Investments"
+    },
+    {
+      "value": "100+",
+      "label": "Bolt-on Deals"
+    },
+    {
       "value": "25+",
-      "label": "Years of Experience"
-    },
-    {
-      "value": "$1B+",
-      "label": "Capital Deployed"
-    },
-    {
-      "value": "30+",
-      "label": "Portfolio Companies"
-    },
-    {
-      "value": "4x",
-      "label": "Average Return Multiple"
+      "label": "Years Experience"
     }
   ],
-  "content": "Tasman Capital has a long history of successful investments across various sectors, with a particular focus on businesses with strong growth potential and opportunities for operational improvement."
+  "content": ""
 }
