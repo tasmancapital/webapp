@@ -23,7 +23,7 @@ module.exports = defineStackbitConfig({
             { name: "title", type: "string", required: true },
             { name: "subtitle", type: "string" },
             { name: "heroVideo", type: "string" },
-            { name: "sections", type: "list", items: { type: "reference", models: ["HeroSection", "ProvenTrackRecordSection", "PastInvestmentsSection", "PerformanceSection", "LogoShowcaseSection"] } }
+            { name: "sections", type: "list", items: { type: "reference", models: ["HeroSection", "ProvenTrackRecordSection", "PastInvestmentsSection", "PerformanceSection", "LogoShowcaseSection", "TimelineSection", "ValuesSection"] } }
           ]
         },
         {
@@ -172,6 +172,35 @@ module.exports = defineStackbitConfig({
           type: "data",
           fields: [
             { name: "type", type: "string", required: true }
+          ]
+        },
+        {
+          name: "TimelineSection",
+          type: "data",
+          fields: [
+            { name: "type", type: "string", required: true },
+            { name: "title", type: "string" },
+            { name: "description", type: "string" },
+            { name: "events", type: "list", items: { type: "object", fields: [
+              { name: "year", type: "string" },
+              { name: "title", type: "string" },
+              { name: "description", type: "string" }
+            ]}}
+          ]
+        },
+        {
+          name: "ValuesSection",
+          type: "data",
+          fields: [
+            { name: "type", type: "string", required: true },
+            { name: "title", type: "string" },
+            { name: "description", type: "string" },
+            { name: "image", type: "string" },
+            { name: "values", type: "list", items: { type: "object", fields: [
+              { name: "title", type: "string" },
+              { name: "description", type: "string" },
+              { name: "points", type: "list", items: { type: "string" } }
+            ]}}
           ]
         }
       ]

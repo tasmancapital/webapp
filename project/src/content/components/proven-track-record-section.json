@@ -1,0 +1,24 @@
+{
+  "type": "ProvenTrackRecordSection",
+  "heading": "Proven Track Record",
+  "subheading": "Our investment approach is built on a foundation of deep industry expertise, operational excellence, and a commitment to creating sustainable value.",
+  "stats": [
+    {
+      "value": "25+",
+      "label": "Years of Experience"
+    },
+    {
+      "value": "$1B+",
+      "label": "Capital Deployed"
+    },
+    {
+      "value": "30+",
+      "label": "Portfolio Companies"
+    },
+    {
+      "value": "4x",
+      "label": "Average Return Multiple"
+    }
+  ],
+  "content": "Tasman Capital has a long history of successful investments across various sectors, with a particular focus on businesses with strong growth potential and opportunities for operational improvement."
+}

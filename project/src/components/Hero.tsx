@@ -1,6 +1,16 @@
 import CookieConsent from './CookieConsent';
 
-const Hero = () => {
+interface HeroProps {
+  heading?: string;
+  subheading?: string;
+  videoUrl?: string;
+}
+
+const Hero = ({ 
+  heading = "Building Great Businesses Through Strategic Partnership", 
+  subheading = "A leading private investment firm with a proven track record of creating value through strategic partnerships and operational excellence.", 
+  videoUrl = "https://thinkenergy.au/tasman/tasman_capital_landing.mp4" 
+}: HeroProps) => {
   return (
     <div 
       className="relative min-h-[80vh] md:min-h-screen flex items-center overflow-hidden"
@@ -21,7 +31,7 @@ const Hero = () => {
             }}
             data-sb-field-path="videoUrl"
           >
-            <source src="https://thinkenergy.au/tasman/tasman_capital_landing.mp4" type="video/mp4" />
+            <source src={videoUrl} type="video/mp4" />
           </video>
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/30 to-background/10"></div>
@@ -33,25 +43,18 @@ const Hero = () => {
             className="heading-xl mb-4 md:mb-8 max-w-5xl"
             data-sb-field-path="heading"
           >
-            <div className="relative inline-block text-foreground px-1">
-              <span className="relative z-10">Building Great</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-foreground/5 to-transparent blur-2xl transform -skew-y-6"></div>
-            </div><br />
-            <div className="relative inline-block text-foreground px-1">
-              <span className="relative z-10">Businesses Through</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-foreground/5 to-transparent blur-2xl transform -skew-y-6"></div>
-            </div><br />
-            <div className="relative inline-block text-foreground px-1">
-              <span className="relative z-10">Strategic Partnership</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-foreground/5 to-transparent blur-2xl transform -skew-y-6"></div>
-            </div>
+            {heading.split(' ').map((word, index) => (
+              <div key={index} className="relative inline-block text-foreground px-1">
+                <span className="relative z-10">{word}</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-foreground/5 to-transparent blur-2xl transform -skew-y-6"></div>
+              </div>
+            ))}
           </h1>
           <p 
             className="text-xl md:text-2xl text-foreground leading-relaxed max-w-2xl mb-8 md:mb-10 px-1"
             data-sb-field-path="subheading"
           >
-            A leading private investment firm with a proven track record of 
-            creating value through strategic partnerships and operational excellence.
+            {subheading}
           </p>
         </div>
       </div>

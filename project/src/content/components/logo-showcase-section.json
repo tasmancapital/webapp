@@ -1,0 +1,37 @@
+{
+  "type": "LogoShowcaseSection",
+  "heading": "Awards & Recognition",
+  "subheading": "Our achievements across the industry",
+  "awards": [
+    {
+      "year": "2005",
+      "name": "AVCAL", 
+      "image": "https://thinkenergy.au/tasman/showcase/AVCAL.jpg",
+      "award": "Management Buy In of the Year with Loscam"
+    },
+    {
+      "year": "2006", 
+      "name": "AVCAL",
+      "image": "https://thinkenergy.au/tasman/showcase/AVCAL.jpg", 
+      "award": "Winner of Management Buyout of the Year with Healthcare Australia"
+    },
+    {
+      "year": "2015",
+      "name": "Australian Growth Company Awards",
+      "image": "https://thinkenergy.au/tasman/showcase/Autralian Growth Company Awards.jpg",
+      "award": "Winner of Exit of the Year with Tasman Lifestyle Continuum"
+    },
+    {
+      "year": "2022",
+      "name": "Australian Growth Company Awards",
+      "image": "https://thinkenergy.au/tasman/showcase/Autralian Growth Company Awards.jpg",
+      "award": "Winner of Company of the Year (Healthcare) with Serenitas"
+    },
+    {
+      "year": "2024",
+      "name": "Australian Investment Council",
+      "image": "https://thinkenergy.au/tasman/showcase/Australian Investment Council.jpg",
+      "award": "Winner of Upper Mid Cap Deal with Serenitas"
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "type": "contact",
   "title": "Contact Us",
   "description": "Please contact our team",
-  "heroImage": "https://thinkenergy.au/tasman/tasman_capital_contact.JPG",
+  "heroImage": "/images/tasman_capital_contact.jpg",
   "address": {
     "street": "Level 2, 50 Clarence Street",
     "city": "Sydney",

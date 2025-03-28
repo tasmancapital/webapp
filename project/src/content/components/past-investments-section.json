@@ -1,0 +1,39 @@
+{
+  "type": "PastInvestmentsSection",
+  "heading": "Past Investments",
+  "subheading": "A selection of our successful investments across various sectors",
+  "investments": [
+    {
+      "name": "TechInnovate",
+      "industry": "Technology",
+      "description": "A leading provider of enterprise software solutions that was acquired by a major technology corporation.",
+      "outcome": "3.5x return on investment",
+      "year": "2018",
+      "image": "/images/investments/investment-1.jpg"
+    },
+    {
+      "name": "HealthPlus",
+      "industry": "Healthcare",
+      "description": "A healthcare services provider that expanded nationally under our ownership.",
+      "outcome": "4.2x return on investment",
+      "year": "2019",
+      "image": "/images/investments/investment-2.jpg"
+    },
+    {
+      "name": "EcoSolutions",
+      "industry": "Environmental Services",
+      "description": "An environmental services company that became a market leader in sustainable waste management.",
+      "outcome": "5.1x return on investment",
+      "year": "2020",
+      "image": "/images/investments/investment-3.jpg"
+    },
+    {
+      "name": "ConsumerBrands",
+      "industry": "Consumer Goods",
+      "description": "A consumer products company that doubled its market share during our investment period.",
+      "outcome": "3.8x return on investment",
+      "year": "2021",
+      "image": "/images/investments/investment-4.jpg"
+    }
+  ]
+}

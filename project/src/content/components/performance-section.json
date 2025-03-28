@@ -1,0 +1,42 @@
+{
+  "type": "PerformanceSection",
+  "heading": "Investment Performance",
+  "subheading": "Our disciplined approach has consistently delivered strong returns across market cycles",
+  "description": "At Tasman Capital, we focus on creating value through operational improvements, strategic repositioning, and sustainable growth initiatives. Our hands-on approach and partnership with management teams have been key drivers of our success.",
+  "strategies": [
+    {
+      "title": "Defensive",
+      "description": "Non-discretionary businesses that are resilient through economic cycles, typically with long-term contracts or asset backed."
+    },
+    {
+      "title": "Operational Improvement",
+      "description": "Cash-generative underperforming business, enhancing profitability by driving topline revenue growth and optimising operational efficiency."
+    },
+    {
+      "title": "Roll-ups",
+      "description": "Consolidation of sectors to create platforms and economies of scale, building market leaders through strategic acquisitions."
+    }
+  ],
+  "performanceMetrics": [
+    {
+      "label": "Average IRR",
+      "value": "28%",
+      "description": "Internal Rate of Return across all realized investments"
+    },
+    {
+      "label": "Average Hold Period",
+      "value": "4.5 years",
+      "description": "Typical investment horizon for portfolio companies"
+    },
+    {
+      "label": "Revenue Growth",
+      "value": "2.8x",
+      "description": "Average revenue growth during ownership period"
+    },
+    {
+      "label": "EBITDA Growth",
+      "value": "3.2x",
+      "description": "Average EBITDA growth during ownership period"
+    }
+  ]
+}

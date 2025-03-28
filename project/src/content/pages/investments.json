@@ -1,6 +1,8 @@
 {
   "type": "investments",
   "title": "Our Investments",
+  "description": "Explore our portfolio of investments across various sectors in Australia and New Zealand.",
+  "heroImage": "/images/sydney_tasman_capital_header.jpeg",
   "investments": [
     {
       "name": "Axicorp",
@@ -45,7 +47,92 @@
       "sector": "Healthcare",
       "investment": "2004",
       "exit": "2005"
+    },
+    {
+      "name": "HireQuip",
+      "id": "hirequip",
+      "logo": "https://thinkenergy.au/tasman/pastdeals/HQ.png",
+      "type": "Realised Investment",
+      "url": "https://www.hirepool.co.nz",
+      "description": "Market leader in dry hire equipment rental in New Zealand",
+      "sector": "Construction",
+      "investment": "2006",
+      "exit": "2007"
+    },
+    {
+      "name": "Loscam",
+      "id": "loscam",
+      "logo": "https://thinkenergy.au/tasman/pastdeals/Ep.png",
+      "type": "Realised Investment",
+      "url": "https://www.loscam.com",
+      "description": "Leading pallet pooling business in Asia Pacific",
+      "sector": "Industrials",
+      "investment": "2003",
+      "exit": "2005"
+    },
+    {
+      "name": "Right2Drive",
+      "id": "right2drive",
+      "logo": "https://thinkenergy.au/tasman/pastdeals/R&D.png",
+      "type": "Realised Investment",
+      "url": "",
+      "description": "Leading accident replacement vehicle provider in Australia and New Zealand",
+      "sector": "Consumer Services",
+      "investment": "2012",
+      "exit": "2016"
+    },
+    {
+      "name": "Serenitas",
+      "id": "serenitas",
+      "logo": "https://thinkenergy.au/tasman/serenitas.png",
+      "type": "Realised Investment",
+      "url": "https://www.serenitas.com.au",
+      "description": "A leading operator and developer of over-50s lifestyle communities",
+      "sector": "Residential Land Lease Communities",
+      "investment": "2018",
+      "exit": "2024"
+    },
+    {
+      "name": "Tasman Serenitas Continuation Fund",
+      "id": "tasman-serenitas-continuation-fund",
+      "logo": "https://thinkenergy.au/tasman/pastdeals/Tasman Serenitas Continuation Fund.png",
+      "type": "Current Investment",
+      "url": "https://serenitas.com.au/",
+      "description": "A GP-led single asset continuation invested in the Serenitas business alongside Pacific Equity Partners SAF II & Mirvac (ASX.MGR)",
+      "sector": "Residential Land Lease Communities",
+      "investment": "2024"
+    },
+    {
+      "name": "Tasman Holiday Parks",
+      "id": "tasman-holiday-parks",
+      "logo": "https://thinkenergy.au/tasman/pastdeals/tasman_holiday_park.webp",
+      "type": "Current Investment",
+      "url": "https://tasmanholidayparks.com.au",
+      "description": "Leading manager of holiday park assets in Australia and New Zealand",
+      "sector": "Tourism",
+      "investment": "2019"
+    },
+    {
+      "name": "Tasman Lifestyle Continuum",
+      "id": "tasman-lifestyle-continuum",
+      "logo": "https://thinkenergy.au/tasman/pastdeals/Tas+LCG.png",
+      "type": "Realised Investment",
+      "url": "",
+      "description": "Residential land lease community operator in Australia",
+      "sector": "Residential Land Lease Communities",
+      "investment": "2011",
+      "exit": "2015"
+    },
+    {
+      "name": "Tempo",
+      "id": "tempo",
+      "logo": "https://thinkenergy.au/tasman/pastdeals/temp.png",
+      "type": "Realised Investment",
+      "url": "",
+      "description": "Australia's second largest security business",
+      "sector": "Services",
+      "investment": "2004",
+      "exit": "2006"
     }
-  ],
-  "heroImage": "https://thinkenergy.au/tasman/sydney_tasman_capital_header.jpeg"
+  ]
 }

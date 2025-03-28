@@ -1,0 +1,47 @@
+{
+  "type": "TimelineSection",
+  "title": "Our History",
+  "description": "From our founding in 1999 to present day, explore the key milestones that have shaped Tasman Capital's journey in private investment.",
+  "events": [
+    {
+      "year": "1999",
+      "title": "Deutsche Bank Capital Partners",
+      "description": "The core of the Tasman team commenced worked together at Deutsche Bank Capital Partners"
+    },
+    {
+      "year": "2006",
+      "title": "Nikko Principal Investments",
+      "description": "Team joins Nikko Principal Investments"
+    },
+    {
+      "year": "2007",
+      "title": "Citigroup Acquisition",
+      "description": "Citigroup acquired Nikko Cordial Corporation and decided to sell the Australian Operations"
+    },
+    {
+      "year": "2008",
+      "title": "Tasman Capital Formation",
+      "description": "Tasman Capital formed via an MBO of Nikko Citi"
+    },
+    {
+      "year": "2017",
+      "title": "Serenitas Joint Venture",
+      "description": "Tasman and GIC formed JV Serenitas for rollup of the RLLC sector – 1st Fund"
+    },
+    {
+      "year": "2019",
+      "title": "Holiday Parks Venture",
+      "description": "JV Tasman Holiday Parks formed for roll up of the industry in Australia / NZ – 2nd Fund"
+    },
+    {
+      "year": "2024",
+      "title": "Serenitas Exit",
+      "description": "Serenitas exited with Tasman retaining a 19.9% stake raised through a continuation fund"
+    },
+    {
+      "year": "2025",
+      "title": "Mid-Market Fund Launch- Current",
+      "description": "Tasman launch mid-market fund – Fund IV"
+    }
+  ]
+}

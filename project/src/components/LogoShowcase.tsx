@@ -1,48 +1,45 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { getContent, annotateContent } from '../lib/contentLoader';
 
-const awards = [
-  {
-    year: '2005',
-    name: 'AVCAL', 
-    image: 'https://thinkenergy.au/tasman/showcase/AVCAL.jpg',
-    award: 'Management Buy In of the Year with Loscam'
-  },
-  {
-    year: '2006', 
-    name: 'AVCAL',
-    image: 'https://thinkenergy.au/tasman/showcase/AVCAL.jpg', 
-    award: 'Winner of Management Buyout of the Year with Healthcare Australia'
-  },
-  {
-    year: '2015',
-    name: 'Australian Growth Company Awards',
-    image: 'https://thinkenergy.au/tasman/showcase/Autralian Growth Company Awards.jpg',
-    award: 'Winner of Exit of the Year with Tasman Lifestyle Continuum'
-  },
-  {
-    year: '2022',
-    name: 'Australian Growth Company Awards',
-    image: 'https://thinkenergy.au/tasman/showcase/Autralian Growth Company Awards.jpg',
-    award: 'Winner of Company of the Year (Healthcare) with Serenitas'
-  },
-  {
-    year: '2024',
-    name: 'Australian Investment Council',
-    image: 'https://thinkenergy.au/tasman/showcase/Australian Investment Council.jpg',
-    award: 'Winner of Upper Mid Cap Deal with Serenitas'
-  }
-];
+interface Award {
+  year: string;
+  name: string;
+  image: string;
+  award: string;
+}
 
-const LogoShowcase = () => {
+interface LogoShowcaseProps {
+  heading?: string;
+  subheading?: string;
+  awards?: Award[];
+}
+
+interface LogoShowcaseContent {
+  type: string;
+  heading: string;
+  subheading: string;
+  awards: Award[];
+}
+
+const LogoShowcase = (props: LogoShowcaseProps = {}) => {
+  // Get content from JSON file
+  const content = getContent<LogoShowcaseContent>('components/logo-showcase-section');
+  
+  // Use props if provided, otherwise use content from JSON
+  const heading = props.heading || content.heading;
+  const subheading = props.subheading || content.subheading;
+  const awards = props.awards || content.awards;
+
   const sortedAwards = React.useMemo(() => {
+    if (!awards) return [];
     return [...awards].sort((a, b) => parseInt(a.year) - parseInt(b.year));
-  }, []);
+  }, [awards]);
 
   return (
     <section 
       className="py-8 pb-24 relative overflow-hidden w-full"
-      data-sb-object-id="logoShowcase"
+      {...annotateContent('components/logo-showcase-section')}
     >      
       <div className="container-xl relative z-10">
         <motion.div 
@@ -53,25 +50,24 @@ const LogoShowcase = () => {
         >
           <h2 
             className="text-[1.75rem] sm:text-[2.25rem] md:text-[2.75rem] font-light tracking-tight leading-[1.1] mb-6 text-foreground"
-            data-sb-field-path="title"
+            data-sb-field-path="heading"
           >
-            Industry Awards
+            {heading}
           </h2>
           <p 
             className="description-text max-w-3xl mx-auto"
-            data-sb-field-path="description"
+            data-sb-field-path="subheading"
           >
-            Industry award winners in 2005, 2006, 2022 and 2024
+            {subheading}
           </p>
         </motion.div>
       </div>
 
       <div 
         className="relative w-full overflow-hidden"
-        data-sb-field-path="awardsContainer"
       >
         <div className="flex whitespace-nowrap animate-scroll-x will-change-transform" style={{ animation: 'scroll 30s linear infinite' }}>
-          {[...sortedAwards, ...sortedAwards].map((award, index) => (
+          {sortedAwards.length > 0 && [...sortedAwards, ...sortedAwards].map((award, index) => (
             <motion.div
               key={`${award.name}-${award.year}-${index}`}
               whileHover={{ scale: 0.98 }}
@@ -88,26 +84,26 @@ const LogoShowcase = () => {
                     src={award.image}
                     alt={award.name}
                     className="w-full h-full object-contain"
-                    data-sb-field-path={index < sortedAwards.length ? `awards.${index}.image` : `awards.${index - sortedAwards.length}.image`}
+                    data-sb-field-path=".image"
                   />
                 </motion.div>
               </div>
 
               <h3 
                 className="text-sm sm:text-base font-medium text-foreground mb-1 sm:mb-2 text-center whitespace-normal w-full"
-                data-sb-field-path={index < sortedAwards.length ? `awards.${index}.name` : `awards.${index - sortedAwards.length}.name`}
+                data-sb-field-path=".name"
               >
                 {award.name}
               </h3>
               <div 
                 className="text-lg sm:text-xl font-bold text-primary mb-1 sm:mb-2 text-center"
-                data-sb-field-path={index < sortedAwards.length ? `awards.${index}.year` : `awards.${index - sortedAwards.length}.year`}
+                data-sb-field-path=".year"
               >
                 {award.year}
               </div>
               <p 
                 className="text-xs sm:text-sm text-muted-foreground text-center whitespace-normal w-full"
-                data-sb-field-path={index < sortedAwards.length ? `awards.${index}.award` : `awards.${index - sortedAwards.length}.award`}
+                data-sb-field-path=".award"
               >
                 {award.award}
               </p>
