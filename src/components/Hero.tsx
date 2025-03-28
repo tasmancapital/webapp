@@ -1,4 +1,5 @@
 import CookieConsent from './CookieConsent';
+import React from 'react';
 
 interface HeroProps {
   heading?: string;
@@ -40,15 +41,25 @@ const Hero = ({
       <div className="relative w-full">
         <div className="container-xl">
           <h1 
-            className="heading-xl mb-4 md:mb-8 max-w-5xl"
+            className="heading-xl mb-4 md:mb-8 max-w-4xl"
             data-sb-field-path="heading"
           >
-            {heading.split(' ').map((word, index) => (
-              <div key={index} className="relative inline-block text-foreground px-1">
-                <span className="relative z-10">{word}</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-foreground/5 to-transparent blur-2xl transform -skew-y-6"></div>
-              </div>
-            ))}
+            {heading.split(' ').map((word, index, array) => {
+              // Insert line breaks after specific words to create 3 lines
+              const shouldAddBreak = 
+                (index === 1 && array.length > 5) || // After "Great"
+                (index === 3 && array.length > 5);   // After "Through"
+              
+              return (
+                <React.Fragment key={index}>
+                  <div className="relative inline-block text-foreground px-1">
+                    <span className="relative z-10">{word}</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-foreground/5 to-transparent blur-2xl transform -skew-y-6"></div>
+                  </div>
+                  {shouldAddBreak && <br />}
+                </React.Fragment>
+              );
+            })}
           </h1>
           <p 
             className="text-xl md:text-2xl text-foreground leading-relaxed max-w-2xl mb-8 md:mb-10 px-1"
