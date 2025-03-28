@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Mail, Send, Building } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -227,23 +226,6 @@ const Contact = () => {
                           {content.email}
                         </a>
                       </div>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Business Hours Card */}
-                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8 shadow-xl">
-                  <h3 className="text-2xl font-light text-foreground mb-6 pb-4 border-b border-white/10">
-                    Business Hours
-                  </h3>
-                  <div className="space-y-4 text-foreground/70">
-                    <div className="flex justify-between items-center">
-                      <span>Monday - Friday</span>
-                      <span>9:00 AM - 5:00 PM</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Saturday - Sunday</span>
-                      <span>Closed</span>
                     </div>
                   </div>
                 </div>

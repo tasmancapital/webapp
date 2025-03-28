@@ -4,12 +4,12 @@
   "description": "Please contact our team",
   "heroImage": "/images/tasman_capital_contact.jpg",
   "address": {
-    "street": "Level 2, 50 Clarence Street",
+    "street": "36/03/60 Margaret St",
     "city": "Sydney",
     "state": "NSW",
     "postcode": "2000",
     "country": "Australia"
   },
-  "email": "info@tasmancapital.com.au",
+  "email": "enquiries@tasmancapital.com.au",
   "phone": "+61 2 8599 9500"
 }
