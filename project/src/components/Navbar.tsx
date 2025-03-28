@@ -40,8 +40,8 @@ const Navbar = () => {
             <Link to="/" className="flex items-center relative z-50">
               <img 
                 src={theme === 'dark' 
-                  ? "https://images.squarespace-cdn.com/content/v1/5cfb3b4c8dc2800001e3c051/1560212577657-1SDBN96G0K8QXMZX5IJ3/Tas+stacked+white.png"
-                  : "https://thinkenergy.au/tasman/logo-black.png"
+                  ? "/images/logo-white.png"
+                  : "/images/logo-black.png"
                 }
                 alt="Tasman Capital"
                 className="h-8 sm:h-10 md:h-12 w-auto transition-opacity duration-300 hover:opacity-80"

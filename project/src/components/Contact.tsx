@@ -1,19 +1,21 @@
-import React from 'react';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Linkedin } from 'lucide-react';
+import { useTheme } from '../lib/ThemeContext';
 
-const Footer = () => {
+const Contact = () => {
   const { theme } = useTheme();
 
   return (
-    <footer className="bg-white dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800">
+    <div className="bg-white dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800">
+      <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
             <Link to="/">
               <img 
                 src={theme === 'dark' 
-                  ? "https://images.squarespace-cdn.com/content/v1/5cfb3b4c8dc2800001e3c051/1560212577657-1SDBN96G0K8QXMZX5IJ3/Tas+stacked+white.png"
-                  : "https://thinkenergy.au/tasman/logo-black.png"
+                  ? "/images/logo-white.png"
+                  : "/images/logo-black.png"
                 }
                 alt="Tasman Capital"
                 className="h-12 w-auto"
@@ -78,8 +80,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
+    </div>
   );
 };
 
-export default Footer;
+export default Contact;
