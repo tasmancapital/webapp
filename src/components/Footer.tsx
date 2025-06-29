@@ -42,7 +42,7 @@ const Footer = () => {
             <h3 className="text-sm font-medium text-zinc-900 dark:text-white mb-3">Contact Us</h3>
             <div className="space-y-2.5">
               <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                3603/60 Margaret St<br />
+                Suite 902/50 Margaret St<br />
                 Sydney NSW 2000<br />
                 Australia
               </p>
