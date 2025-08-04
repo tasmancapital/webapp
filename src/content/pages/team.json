@@ -137,6 +137,17 @@
       ]
     },
     {
+      "id": "tom-brand",
+      "name": "Tom Brand",
+      "role": "Investment Associate",
+      "image": "/images/team/tom-brand.jpg",
+      "summary": "Tom joined Tasman Capital in 2025.",
+      "details": [
+        "Prior to Tasman, Tom worked at Rangatira Investments in New Zealand investing in mid-market private equity opportunities across a range of industries. Tom commenced his career in the deals team at PwC in Auckland.",
+        "Education: Bachelor of Commerce, Bachelor of Arts, and is a CFA Charterholder."
+      ]
+    },
+    {
       "id": "elizabeth-jackson",
       "name": "Elizabeth Jackson",
       "role": "Executive Assistant and Office Assistant",
