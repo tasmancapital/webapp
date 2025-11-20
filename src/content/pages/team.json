@@ -91,17 +91,6 @@
       ]
     },
     {
-      "id": "max-peres",
-      "name": "Max Peres",
-      "role": "Vice President",
-      "image": "/images/team/max-peres.jpg",
-      "summary": "Max joined Tasman Capital in 2019. Max has over 5 years of corporate finance and private equity experience.",
-      "details": [
-        "Prior to Tasman, Max held a position in the corporate finance team at Shaw and Partners advising small and mid-cap ASX listed companies on M&A and ECM.",
-        "Education: Bachelor of Commerce, Master of Finance, and is a CFA Charterholder."
-      ]
-    },
-    {
       "id": "alex-hardgrave",
       "name": "Alex Hardgrave",
       "role": "Vice President",
@@ -111,6 +100,17 @@
         "Prior to joining Tasman, Alex worked at MVision Private Equity Advisers in London raising funds for alternate investment firms.",
         "Alex commenced his professional career with KPMG in Melbourne in 2017.",
         "Education: Bachelor of Commerce"
+        ]
+    },
+    {
+      "id": "max-peres",
+      "name": "Max Peres",
+      "role": "Vice President",
+      "image": "/images/team/max-peres.jpg",
+      "summary": "Max joined Tasman Capital in 2019. Max has over 5 years of corporate finance and private equity experience.",
+      "details": [
+        "Prior to Tasman, Max held a position in the corporate finance team at Shaw and Partners advising small and mid-cap ASX listed companies on M&A and ECM.",
+        "Education: Bachelor of Commerce, Master of Finance, and is a CFA Charterholder."
       ]
     },
     {
