@@ -91,18 +91,6 @@
       ]
     },
     {
-      "id": "brone-roze",
-      "name": "Brone Roze",
-      "role": "Investment Director",
-      "image": "/images/team/brone-roze.jpg",
-      "summary": "Brone has over 13 years experience in mergers & acquisitions, corporate development, private capital investment and senior finance roles across a broad range of sectors including property, online and technology sectors.",
-      "details": [
-        "Brone has previously held roles including Investment Director for a private family office fund focused on commercial property and venture investments and as CFO of ASX listed SaaS business, Skyfii Ltd.",
-        "Brone also worked in investment banking and mergers and acquisitions roles at KPMG Corporate Finance, ABN AMRO and Macquarie Bank.",
-        "Education: Bachelor of Commerce, LLB, LLM."
-      ]
-    },
-    {
       "id": "max-peres",
       "name": "Max Peres",
       "role": "Vice President",
@@ -145,6 +133,17 @@
       "details": [
         "Prior to Tasman, Tom worked at Rangatira Investments in New Zealand investing in mid-market private equity opportunities across a range of industries. Tom commenced his career in the deals team at PwC in Auckland.",
         "Education: Bachelor of Commerce, Bachelor of Arts, and is a CFA Charterholder."
+         ]
+    },
+    {
+      "id": "nick-buckley",
+      "name": "Nick Buckley",
+      "role": "Investment Associate",
+      "image": "/images/team/tom-brand.jpg",
+      "summary": "Nick joined Tasman Capital in 2025.",
+      "details": [
+        "Nick has over five years of experience across mergers and acquisitions, equity capital markets, and private equity investment. Before joining Tasman, Nick was part of Ord Minnett’s Private Capital investment team, where he focused on growth-oriented private equity investments.",
+        "Education: Bachelor of Commerce."
       ]
     },
     {
